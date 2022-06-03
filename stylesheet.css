@@ -10,7 +10,7 @@ body{
     width: 80em;
     margin:auto;
 
-    background-image: linear-gradient(to right,  #49797a 60%,cadetblue 80%);
+    background-image: linear-gradient(to right,  #49797a 50%,cadetblue 50%);
 }
 header{
     position: relative;
@@ -18,7 +18,6 @@ header{
     width: 80%;
     margin:auto;
     background-color: peru;
-    /*border-style: double;*/
     border-bottom-left-radius: 1em;
     border-bottom-right-radius:1em ;
     text-align: center;
@@ -40,12 +39,11 @@ header>p{
 }
 aside{
     position: absolute;
-    /*left: 10em;*/
     top:12em;
     width: 20em;
     height: 100%;
-    min-height: 62em;
-    /*float: left;*/
+    min-height: 40em;
+    float: left;
     background-color: #49797a;
     border-radius: 2.5em;
     z-index: 1;
@@ -96,7 +94,7 @@ main{
 
 }
 .button-pad{
-    margin:0em 0em 0em 1em;
+    margin:0 0 0 1em;
 }
 button{
     width: 4em;
@@ -107,25 +105,51 @@ button{
     margin:0.5em;
 
 }
+button:hover,
+button:visited:hover{
+    background-color: #c5c2c2;
+}
+button:active,
+button:visited:active{
+    background-color: #94948e;
+}
 .meta-btns{
     float: left;
 }
 .meta-btns>button{
     background-color: hotpink;
 }
+.meta-btns>button:hover,
+.meta-btns>button:visited:hover{
+    background-color: #ea489f;
+}
+.meta-btns>button:active,
+.meta-btns>button:visited:active{
+    background-color: deeppink;
+}
 .op-btns{
     float: right;
-    margin:2em 1em 0em 0em;
+    margin:2em 1em 0 0;
 }
 .op-btns>button{
     display: block;
     margin:0.9em;
     background-color: khaki;
 }
+.op-btns>button:hover,
+.op-btns>button:visited:hover{
+    background-color: darkkhaki;
+}
+.op-btns>button:active,
+.op-btns>button:visited:active{
+    background-color: #a9a34e;
+}
+
 .num-btns{
     float: left;
     width:22em;
 }
+
 #0-btn{
     height: 3.5em;
 }
@@ -138,10 +162,28 @@ button{
 
 footer{
     position: relative;
-    overflow: hidden;
+    /*overflow: hidden;*/
     clear: both;
     background-color: #49797a;
-    height: 10em;
+    /*height: 20em;*/
     border-top-right-radius: 2em;
     z-index: 2;
+}
+.console{
+    height: 8em;
+    width: 30em;
+    background-color: darkslateblue;
+    border-radius: 0.5em;
+    margin:  2em 2em;
+    float:right;
+    overflow-y: scroll;
+    font-family: 'Inconsolata', monospace;
+    padding: 1em;
+    font-size: 1.5em;
+    line-height: 2em;
+}
+footer>p{
+    clear: both;
+    overflow: hidden;
+    padding: 2em;
 }
