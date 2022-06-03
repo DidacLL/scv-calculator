@@ -91,7 +91,20 @@ main{
     border-radius: 2em;
     box-shadow: inset 0.1em 0.3em 0.2em 0.2em #4a5a79;
     margin: 1em;
+    font-family: 'Orbitron', monospace;
+    font-weight: bold;
+    color: blue;
+    text-align: right;
 
+}
+#first-line{
+
+    padding: 1em 1em 0 1em;
+    font-size: 1.5em;
+}
+#main-line{
+    padding: 0.5em 1em 0 1em;
+    font-size: 2em;
 }
 .button-pad{
     margin:0 0 0 1em;

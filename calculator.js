@@ -1,11 +1,12 @@
-
-
+/*------------------------------------------------------------------ELEMENTS SELECTION */
 const calculator = document.querySelector('.calculator')
 const consoleOut = document.querySelector('.console')
+const screen= {firstLine: document.querySelector('#first-line'), mainLine:document.querySelector('#main-line')}
+// const numberPad=
 
-function outputMessage() {
-    consoleOut.insertAdjacentHTML("beforeend", '</br> &gt; I am a message');
+const outputMessage= function(str) {
+    const mssg= `</br> &gt; ${str}`
+    consoleOut.insertAdjacentHTML("beforeend", mssg);
     consoleOut.scroll(0,consoleOut.scrollHeight)
 }
-
-document.addEventListener('click',outputMessage)
+calculator.addEventListener('click',()=>{outputMessage('hi!')},false)
