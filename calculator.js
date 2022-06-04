@@ -14,7 +14,7 @@ for (let i=0; i<10;i++){
 }
 
 /*------------------------------------------------------------------ INPUT ASSIGNMENT */
-document.addEventListener("keydown",function (e){
+document.addEventListener("keyup",function (e){
     e.preventDefault();
     switch (e.key){
         case 'Enter': outputMessage('Enter press!')
