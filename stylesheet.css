@@ -66,6 +66,10 @@ ul{
 li{
     padding-top: 1em;
 }
+em{
+    color: hotpink;
+    font-weight: bold;
+}
 main{
     float: right;
     width:60em;
@@ -133,10 +137,12 @@ button:visited:active{
     background-color: hotpink;
 }
 .meta-btns>button:hover,
+.meta-btns>.metaover,
 .meta-btns>button:visited:hover{
     background-color: #ea489f;
 }
 .meta-btns>button:active,
+.meta-btns>.metadown,
 .meta-btns>button:visited:active{
     background-color: deeppink;
 }
@@ -150,10 +156,12 @@ button:visited:active{
     background-color: khaki;
 }
 .op-btns>button:hover,
+.op-btns>.opover,
 .op-btns>button:visited:hover{
     background-color: darkkhaki;
 }
 .op-btns>button:active,
+.op-btns>.opdown,
 .op-btns>button:visited:active{
     background-color: #a9a34e;
 }
@@ -163,13 +171,14 @@ button:visited:active{
     width:22em;
 }
 .num-btns>button:hover,
+.numover,
 .num-btns>button:visited:hover{
-    background-color: darkkhaki;
+    background-color: cornsilk;
 }
 .num-btns>button:active,
-.numpress,
+.numdown,
 .num-btns>button:visited:active{
-    background-color: #a9a34e;
+    background-color: blanchedalmond;
 }
 
 #0-btn{
@@ -179,7 +188,6 @@ button:visited:active{
     width:9.3em;
     height:3.5em;:
     /*float: right;*/
-
 }
 
 footer{
