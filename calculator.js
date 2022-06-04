@@ -1,5 +1,81 @@
+/*------------------------------------------------------------------GLOBAL*/
+const maxAnsVal=999999999999999999;
+const maxVal=999999999;
+let ansVal='';
+let currentInput='';
+const currentOperation={
+    firstOperand:null,
+    operator:null,
+    secondOperand:null,
+    isReady:false,
+    result: null,
+    sendOperator:function (op){
+        if(parseInt(currentInput)<=maxVal){
+            if (this.operator === null) {
+                if (this.firstOperand === null && currentInput !== "") {
+                    this.sendNewInput(currentInput, op);
+                    currentInput = '';
+                } else if (this.firstOperand === null) {
+                    this.sendNewInput(ansVal, op);
+                    screen.firstLine.textContent = ansVal + op;
+                } else {
+                    screen.firstLine.textContent += op;
+                    this.operator = op;
+                }
+            } else if (this.secondOperand === null) {
+                this.sendNewInput(currentInput, op)
+                currentInput = '';
+            }
+        }else{showError('ERR_ Input value out of range')}
+    },
+    sendNewInput:function (numStr,opStr){
+        if(this.firstOperand===null){
+            this.firstOperand=numStr;
+            this.operator=opStr;
+            screen.mainLine.textContent="";
+            screen.firstLine.textContent=this.firstOperand + this.operator;
+            // updateScreen(true);
+        }
+        else if(this.secondOperand===null){
+            this.secondOperand=numStr;
+            this.isReady=true;
+            this.solve(opStr);
+        }
+    },
+    solve: function (lastOp){
+        if(this.isReady){
+            let tempRes= eval(this.firstOperand + this.operator + this.secondOperand).toString();
+            if(tempRes<maxAnsVal) {
+                this.result =tempRes
+                ansVal = this.result;
+                screen.mainLine.textContent = this.result;
+                screen.firstLine.textContent = this.firstOperand + this.operator + this.secondOperand;
+                if (lastOp === "=") {
+                    this.firstOperand = null;
+                    this.operator = null;
+                    this.secondOperand = null;
+                    this.isReady = false;
+                } else {
+                    this.firstOperand = this.result;
+                    this.operator = lastOp;
+                    this.secondOperand = null;
+                    this.result = null;
+                    this.isReady = false;
+                }
+            }else{
+                showError('ERR_ Result is greater than allowed range.')
+            }
+        }
+    },
+    resetOperationData: function (){
+        this.firstOperand=null;
+        this.operator=null;
+        this.secondOperand=null;
+        this.isReady=false;
+        this.result= null;
+    }
+}
 /*------------------------------------------------------------------ELEMENTS SELECTION */
-
     const calculator = document.querySelector('.calculator');
     const consoleOut = document.querySelector('.console');
     const screen = {
@@ -7,12 +83,17 @@
         mainLine: document.querySelector('#main-line')
     };
     const numberPad = [];
+
+
+
 //NUMBER PAD SELECTION & ASSIGNMENT
     for (let i = 0; i < 10; i++) {
         let str = '#\\3' + i + '-btn'
         numberPad.push(document.querySelector(str));
         numberPad[i].addEventListener('click', () => {
-            outputMessage(i + ' press')
+            currentInput+=i.toString();
+            checkFirstOperandSkipped();
+            updateScreen(false);
         });
     }
     const operators = {
@@ -27,31 +108,33 @@
         ans: document.querySelector('#ans-btn')
     }
     const equalButton = document.querySelector('#equal-btn');
-
-
 /*------------------------------------------------------------------ INPUT & LISTENERS ASSIGNMENT */
 
+
     operators.div.addEventListener('click', () => {
-        outputMessage('/ press')
+        currentOperation.sendOperator("/");
     });
     operators.prod.addEventListener('click', () => {
-        outputMessage('* press')
+        currentOperation.sendOperator("*");
     });
     operators.add.addEventListener('click', () => {
-        outputMessage('+ press')
+        currentOperation.sendOperator("+");
     });
     operators.subs.addEventListener('click', () => {
-        outputMessage('- press')
+        currentOperation.sendOperator("-");
     });
-
+    equalButton.addEventListener('click', () => {
+        currentOperation.sendOperator("=");
+    });
     metaButtons.ans.addEventListener('click', () => {
-        outputMessage('ANS press')
+        ansFunction();
     });
     metaButtons.c.addEventListener('click', () => {
-        outputMessage('C press')
+        cFunction();
     });
     metaButtons.ac.addEventListener('click', () => {
-        outputMessage('AC press')
+        resetData();
+        outputMessage('ALL DATA CLEARED')
     });
 
     document.addEventListener("keyup", function (e) {
@@ -60,17 +143,14 @@
     document.addEventListener("keydown", function (e) {
         filterKeyEvent(e, false);
     })
-
-
 /*----------------------------------------------------------------------------------FUNCTIONS */
-
     const outputMessage = function (str) {
         const mssg = `</br> &gt; ${str}`
         consoleOut.insertAdjacentHTML("beforeend", mssg);
         consoleOut.scroll(0, consoleOut.scrollHeight);
     }
-
     function filterKeyEvent(e, isDown) {
+        //TODO better implementatio with individual buttonObject key values
         let elem;
         let baseClass;
         let newClass;
@@ -145,5 +225,44 @@
             }, 150);
         }
     }
+    function updateScreen(isOperator){
+        if(isOperator) {
+            screen.mainLine.textContent="";
+            screen.firstLine.textContent=currentOperation.firstOperand + currentOperation.operator;
+        }else{
+            screen.mainLine.textContent=currentInput;
+        }
+    }
+    function showError(mssg){
+        outputMessage(mssg);
+        screen.mainLine.textContent='ERR_'
+        setTimeout(()=>{screen.mainLine.textContent=""},500);
+    }
+    function resetData(){
+        ansVal='';
+        currentInput='';
+        // screen.mainLine.textContent='';
+        screen.firstLine.textContent='';
+        currentOperation.resetOperationData();
+        updateScreen(false);
+    }
+    function ansFunction(){
+        currentInput=ansVal;
+        updateScreen(false);
+    }
+    function cFunction() {
+        if(currentInput!==''){
+            currentInput=currentInput.slice(0,-1);
+        }else if(currentOperation.operator!==null){
+            currentOperation.operator=null;
+            screen.firstLine.textContent=screen.firstLine.textContent.slice(0,-1);
+        }
+        updateScreen(false);
 
+    }
+    function checkFirstOperandSkipped() {
+        if(currentOperation.firstOperand!==null){
+            updateScreen(true);
+        }
+    }
 

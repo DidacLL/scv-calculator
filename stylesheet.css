@@ -1,16 +1,18 @@
-*{                /* <--- THIS OVERRIDES DEFAULT BROWSER STYLE ***MUST*** */
+* { /* <--- THIS OVERRIDES DEFAULT BROWSER STYLE ***MUST*** */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+html{
+    background-color: #49797a;
+}
 body{
     color: lightgray; /* Dark gray */
-    background-color: cadetblue;
     font-size: 10px;
     width: 80em;
     margin:auto;
+    /*background-image: linear-gradient(to right,  #49797a 50%,cadetblue 50%);*/
 
-    background-image: linear-gradient(to right,  #49797a 50%,cadetblue 50%);
 }
 header{
     position: relative;
@@ -75,6 +77,8 @@ main{
     width:60em;
     background-color: cadetblue;
     border-bottom-left-radius: 2em;
+    border-bottom-right-radius: 2em;
+    border-top-right-radius: 2em;
     z-index: 3;
     position: relative;
     /*padding: 3em 20em;*/
@@ -120,6 +124,8 @@ button{
     box-shadow: 0.2em 0.2em #49797a;
     border-radius: 1.5em;
     margin:0.5em;
+    font-weight: bold;
+    font-family: monospace;
 
 }
 button:hover,
@@ -135,6 +141,7 @@ button:visited:active{
 }
 .meta-btns>button{
     background-color: hotpink;
+    color: white;
 }
 .meta-btns>button:hover,
 .meta-btns>.metaover,
@@ -192,11 +199,8 @@ button:visited:active{
 
 footer{
     position: relative;
-    /*overflow: hidden;*/
     clear: both;
     background-color: #49797a;
-    /*height: 20em;*/
-    border-top-right-radius: 2em;
     z-index: 2;
 }
 .console{
