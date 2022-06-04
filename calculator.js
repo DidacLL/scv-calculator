@@ -10,7 +10,9 @@ const currentOperation={
     isReady:false,
     result: null,
     sendOperator:function (op){
-        if(parseInt(currentInput)<=maxVal){
+        if(parseInt(currentInput)>maxVal) {
+            showError('ERR_ Input value out of range')
+        }else{
             if (this.operator === null) {
                 if (this.firstOperand === null && currentInput !== "") {
                     this.sendNewInput(currentInput, op);
@@ -26,7 +28,7 @@ const currentOperation={
                 this.sendNewInput(currentInput, op)
                 currentInput = '';
             }
-        }else{showError('ERR_ Input value out of range')}
+        }
     },
     sendNewInput:function (numStr,opStr){
         if(this.firstOperand===null){
@@ -44,7 +46,9 @@ const currentOperation={
     },
     solve: function (lastOp){
         if(this.isReady){
-            let tempRes= eval(this.firstOperand + this.operator + this.secondOperand).toString();
+            let tempRes= eval(this.firstOperand + this.operator + this.secondOperand);
+            if(tempRes%1!==0){tempRes=tempRes.toFixed(4)}
+            tempRes.toString();
             if(tempRes<maxAnsVal) {
                 this.result =tempRes
                 ansVal = this.result;
