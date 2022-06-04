@@ -162,6 +162,15 @@ button:visited:active{
     float: left;
     width:22em;
 }
+.num-btns>button:hover,
+.num-btns>button:visited:hover{
+    background-color: darkkhaki;
+}
+.num-btns>button:active,
+.numpress,
+.num-btns>button:visited:active{
+    background-color: #a9a34e;
+}
 
 #0-btn{
     height: 3.5em;
