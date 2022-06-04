@@ -1,8 +1,12 @@
 /*------------------------------------------------------------------GLOBAL*/
+//Integity maximums to never reach screen size
 const maxAnsVal=999999999999999999;
 const maxVal=999999999;
+//Result from las operation
 let ansVal='';
+//Current value pending to send
 let currentInput='';
+//Object that handles current operation data and methods
 const currentOperation={
     firstOperand:null,
     operator:null,
@@ -86,11 +90,8 @@ const currentOperation={
         firstLine: document.querySelector('#first-line'),
         mainLine: document.querySelector('#main-line')
     };
+    //NUMBER PAD SELECTION & ASSIGNMENT
     const numberPad = [];
-
-
-
-//NUMBER PAD SELECTION & ASSIGNMENT
     for (let i = 0; i < 10; i++) {
         let str = '#\\3' + i + '-btn'
         numberPad.push(document.querySelector(str));
@@ -113,8 +114,6 @@ const currentOperation={
     }
     const equalButton = document.querySelector('#equal-btn');
 /*------------------------------------------------------------------ INPUT & LISTENERS ASSIGNMENT */
-
-
     operators.div.addEventListener('click', () => {
         currentOperation.sendOperator("/");
     });
@@ -140,7 +139,6 @@ const currentOperation={
         resetData();
         outputMessage('ALL DATA CLEARED')
     });
-
     document.addEventListener("keyup", function (e) {
         filterKeyEvent(e, true);
     })
@@ -148,11 +146,13 @@ const currentOperation={
         filterKeyEvent(e, false);
     })
 /*----------------------------------------------------------------------------------FUNCTIONS */
+    //send a message to on-screen console @param str= string message
     const outputMessage = function (str) {
         const mssg = `</br> &gt; ${str}`
         consoleOut.insertAdjacentHTML("beforeend", mssg);
         consoleOut.scroll(0, consoleOut.scrollHeight);
     }
+    //Method to simulate click on keyboard event @param isDown? active style :hover style
     function filterKeyEvent(e, isDown) {
         //TODO better implementatio with individual buttonObject key values
         let elem;
@@ -219,7 +219,7 @@ const currentOperation={
         }
         handleKeyPress(elem, baseClass, newClass, isDown);
     }
-
+    //Method to simulate click on keyboard event @param isDown? active style :hover style
     const handleKeyPress = function (elem, baseClass, newClass, isDown) {
         elem.className = newClass;
         if (isDown) {
@@ -229,6 +229,7 @@ const currentOperation={
             }, 150);
         }
     }
+    //Updates calculator screen lines
     function updateScreen(isOperator){
         if(isOperator) {
             screen.mainLine.textContent="";
@@ -237,11 +238,13 @@ const currentOperation={
             screen.mainLine.textContent=currentInput;
         }
     }
+    //Shows errors on console for a half of a second
     function showError(mssg){
         outputMessage(mssg);
         screen.mainLine.textContent='ERR_'
         setTimeout(()=>{screen.mainLine.textContent=""},500);
     }
+    //reset all calculator data
     function resetData(){
         ansVal='';
         currentInput='';
@@ -250,10 +253,12 @@ const currentOperation={
         currentOperation.resetOperationData();
         updateScreen(false);
     }
+    //repeats last operation result
     function ansFunction(){
         currentInput=ansVal;
         updateScreen(false);
     }
+    //clears last input value, also operators
     function cFunction() {
         if(currentInput!==''){
             currentInput=currentInput.slice(0,-1);
@@ -264,6 +269,7 @@ const currentOperation={
         updateScreen(false);
 
     }
+    //workaround to solve issue when pushing operator after result without entering new number, it uses ansVal as first operand
     function checkFirstOperandSkipped() {
         if(currentOperation.firstOperand!==null){
             updateScreen(true);

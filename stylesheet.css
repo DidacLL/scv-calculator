@@ -7,7 +7,7 @@ html{
     background-color: #49797a;
 }
 body{
-    color: lightgray; /* Dark gray */
+    color: lightgray;
     font-size: 10px;
     width: 80em;
     margin:auto;
@@ -56,7 +56,7 @@ h2{
     padding-top: 1em;
     font-size: 1.8em;
 }
-ul{
+ul,.contact>p{
     margin-left: 0;
     padding-left: 2em;
     padding-top: 1em;
@@ -67,6 +67,15 @@ ul{
 }
 li{
     padding-top: 1em;
+}
+.icons{
+    text-align: center;
+}
+img{
+    margin-right: 1em;
+    margin-top: 1em;
+    width: 3em;
+    height: 3em;
 }
 em{
     color: hotpink;
@@ -81,14 +90,12 @@ main{
     border-top-right-radius: 2em;
     z-index: 3;
     position: relative;
-    /*padding: 3em 20em;*/
 }
 .calculator{
     width:32em;
     height: 47em;
     margin: 10px auto;
     padding-top: 1em;
-    /*border: blue solid 1px;*/
     border-radius: 2.5em;
     box-shadow: 1.2em 1.2em #49797a;
     background-color: #78b7b9;
@@ -103,10 +110,8 @@ main{
     font-weight: bold;
     color: blue;
     text-align: right;
-
 }
 #first-line{
-
     padding: 1em 1em 0 1em;
     font-size: 1.5em;
 }
@@ -126,7 +131,6 @@ button{
     margin:0.5em;
     font-weight: bold;
     font-family: monospace;
-
 }
 button:hover,
 button:visited:hover{
@@ -172,7 +176,6 @@ button:visited:active{
 .op-btns>button:visited:active{
     background-color: #a9a34e;
 }
-
 .num-btns{
     float: left;
     width:22em;
@@ -187,16 +190,13 @@ button:visited:active{
 .num-btns>button:visited:active{
     background-color: blanchedalmond;
 }
-
 #0-btn{
     height: 3.5em;
 }
 #equal-btn{
     width:9.3em;
-    height:3.5em;:
-    /*float: right;*/
+    height:3.5em;
 }
-
 footer{
     position: relative;
     clear: both;
