@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------GLOBAL*/
 //Integity maximums to never reach screen size
 const maxAnsVal=9999999999;
-const maxVal=999999;
+const maxVal=9999999;
 //Result from las operation
 let ansVal='';
 //Current value pending to send
@@ -96,7 +96,9 @@ const currentOperation={
         let str = '#\\3' + i + '-btn'
         numberPad.push(document.querySelector(str));
         numberPad[i].addEventListener('click', () => {
-            currentInput+=i.toString();
+            if(currentInput.length<=7) {
+                currentInput += i.toString();
+            }
             checkFirstOperandSkipped();
             updateScreen(false);
         });
