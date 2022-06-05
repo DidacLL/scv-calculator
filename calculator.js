@@ -98,6 +98,8 @@ const currentOperation={
         numberPad[i].addEventListener('click', () => {
             if(currentInput.length<=7) {
                 currentInput += i.toString();
+            }else{
+                outputMessage('ERR_ Input value out of range');
             }
             checkFirstOperandSkipped();
             updateScreen(false);
