@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------GLOBAL*/
 //Integity maximums to never reach screen size
-const maxAnsVal=999999999999999999;
-const maxVal=999999999;
+const maxAnsVal=999999999999999;
+const maxVal=999999;
 //Result from las operation
 let ansVal='';
 //Current value pending to send
